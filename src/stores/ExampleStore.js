@@ -4,9 +4,8 @@ import { fetchGithubOrgs } from '../api';
 export const ExampleStore = types
   .model('ExampleStore', {
     data: types.optional(types.array(types.string), []),
-    loading: types.optional(types.boolean, false)
+    loading: types.optional(types.boolean, false),
   })
-  .views(self => ({}))
   .actions(self => ({
     async fetchGithub() {
       self.loading = true;
@@ -15,9 +14,16 @@ export const ExampleStore = types
     },
     setData(data) {
       self.data = [];
-      for (var p in data) {
-        self.data.push(`${p} - ${data[p]}`);
-      }
+
+      // Just pack everything returned into an array
+      Object.keys(data).map((p) => {
+        if (p && data[p]) {
+          const value = JSON.stringify(data[p]);
+          self.data.push(`${p} - ${value}`);
+          return true;
+        }
+        return false;
+      });
       self.loading = false;
-    }
+    },
   }));
