@@ -5,11 +5,11 @@ export const fetchGithubOrgs = async () => {
   try {
     const response = await axios({
       method: 'GET',
-      url: `${API_URL}/users/octocat/orgs`,
+      url: `${API_URL}/repos/adamgiacomelli/reactjs-stack-example`,
       responseType: 'json',
     });
-    return response.data.data;
+    return response;
   } catch (err) {
-    throw err.response.data;
+    throw err.response;
   }
 };

@@ -5,6 +5,7 @@ import {
 
 export const ExampleStore = types
   .model('ExampleStore', {
+    data: types.optional(types.array(types.string), []),
     loading: types.optional(types.boolean, false),
   })
   .views(self => ({}
@@ -13,6 +14,13 @@ export const ExampleStore = types
     async fetchGithub() {
       self.loading = true;
       const response = await fetchGithubOrgs();
-      console.log(response)
+      self.setData(response.data);
     },
-  }));
+    setData(data) {
+      self.data = [];
+      for (var p in data) {        
+        self.data.push(`${p} - ${data[p]}`);
+      }
+      self.loading = false;
+    }
+  }));  
