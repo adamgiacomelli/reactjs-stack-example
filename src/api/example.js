@@ -6,7 +6,7 @@ export const fetchGithubOrgs = async () => {
     const response = await axios({
       method: 'GET',
       url: `${API_URL}/repos/adamgiacomelli/reactjs-stack-example`,
-      responseType: 'json',
+      responseType: 'json'
     });
     return response;
   } catch (err) {

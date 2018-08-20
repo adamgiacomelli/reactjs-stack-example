@@ -8,7 +8,7 @@ class App extends Component {
         <header className="App-header">
           <h1 className="App-title">Welcome to React Stack Example</h1>
         </header>
-        <SpecificExampleComponent/>
+        <SpecificExampleComponent />
       </div>
     );
   }
