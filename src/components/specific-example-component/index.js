@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
-import { ExampleButton } from '../common/'
+import { inject, observer} from 'mobx-react';
+import { ExampleButton } from '../common/';
 import crow from '../../assets/crow.jpg';
 
+@inject('rootStore')
+@observer
 class SpecificExampleComponent extends Component {
   render() {
     return (
