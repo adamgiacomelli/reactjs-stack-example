@@ -1,7 +1,34 @@
 import React, { Component } from 'react';
 import { inject, observer } from 'mobx-react';
+import { createComponent as cc } from 'react-fela';
 import { ExampleButton } from '../common';
 import crow from '../../assets/crow.jpg';
+
+const ImageWrapper = cc(
+  () => ({
+    display: 'block',
+    height: '200px',
+    margin: 'auto',
+    width: 'auto',
+  }),
+  'img',
+  ['src', 'alt'],
+);
+
+const InstructionLabel = cc(
+  () => ({
+    color: 'white',
+    textAlign: 'center',
+  }),
+);
+
+const APIData = cc(
+  () => ({
+    color: 'white',
+    fontWeight: 'bold',
+  }),
+  'pre',
+);
 
 @inject('rootStore')
 @observer
@@ -24,19 +51,19 @@ class SpecificExampleComponent extends Component {
 
     return (
       <div>
-        <img alt="crow" src={crow} />
-        <p>
+        <ImageWrapper alt="crow" src={crow} />
+        <InstructionLabel>
           To get started, edit
           {' '}
           <code>src/App.js</code>
           {' '}
 and save to reload.
-        </p>
+        </InstructionLabel>
         <ExampleButton onClick={this.onClick} label="Click me to test API" />
-        <pre>
+        <APIData>
           {!loading && data && data.map((prop, idx) => <p key={idx}>{prop}</p>)}
           {loading && 'loading...'}
-        </pre>
+        </APIData>
       </div>
     );
   }
